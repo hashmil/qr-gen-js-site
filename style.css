@@ -1,3 +1,13 @@
 .max-w-600 {
   max-width: 600px;
 }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1;
+}

@@ -11,62 +11,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   </head>
   <body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-10">
-      <h1 class="text-4xl font-bold mb-8 text-center">QR Code Generator</h1>
-      <div class="bg-white shadow-md rounded p-8 max-w-600 mx-auto">
-        <div class="mb-4">
-          <label for="urlInput" class="block text-gray-700 font-semibold"
-            >Enter URL:</label
-          >
-          <input
-            type="url"
-            id="urlInput"
-            placeholder="Enter URL"
-            class="w-full mt-1 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div class="mb-4">
-          <label for="sizeInput" class="block text-gray-700 font-semibold"
-            >QR Code size:</label
-          >
-          <div class="flex items-center mt-1">
-            <input
-              type="range"
-              id="sizeInput"
-              min="100"
-              max="1000"
-              value="256"
-              class="flex-grow mr-2" />
-            <input
-              type="number"
-              id="sizeValue"
-              min="100"
-              max="1000"
-              value="256"
-              class="w-20 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    <div class="page-container">
+      <div class="content-wrapper">
+        <div class="container mx-auto px-4 py-10">
+          <h1 class="text-4xl font-bold mb-8 text-center">QR Code Generator</h1>
+          <div class="bg-white shadow-md rounded p-8 max-w-600 mx-auto">
+            <div class="mb-4">
+              <label for="urlInput" class="block text-gray-700 font-semibold"
+                >Enter URL:</label
+              >
+              <input
+                type="url"
+                id="urlInput"
+                placeholder="Enter URL"
+                class="w-full mt-1 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+            <div class="mb-4">
+              <label for="sizeInput" class="block text-gray-700 font-semibold"
+                >QR Code size:</label
+              >
+              <div class="flex items-center mt-1">
+                <input
+                  type="range"
+                  id="sizeInput"
+                  min="100"
+                  max="1000"
+                  value="256"
+                  class="flex-grow mr-2" />
+                <input
+                  type="number"
+                  id="sizeValue"
+                  min="100"
+                  max="1000"
+                  value="256"
+                  class="w-20 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label
+                for="errorCorrectionLevel"
+                class="block text-gray-700 font-semibold"
+                >Error Correction Level:</label
+              >
+              <select
+                id="errorCorrectionLevel"
+                class="w-full mt-1 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="L">L (Low)</option>
+                <option value="M">M (Medium)</option>
+                <option value="Q">Q (Quartile)</option>
+                <option value="H">H (High)</option>
+              </select>
+            </div>
+            <button
+              id="generateBtn"
+              class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Generate QR Code
+            </button>
+            <div id="qrcode-container" class="mt-8"></div>
           </div>
         </div>
-        <div class="mb-4">
-          <label
-            for="errorCorrectionLevel"
-            class="block text-gray-700 font-semibold"
-            >Error Correction Level:</label
-          >
-          <select
-            id="errorCorrectionLevel"
-            class="w-full mt-1 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option value="L">L (Low)</option>
-            <option value="M">M (Medium)</option>
-            <option value="Q">Q (Quartile)</option>
-            <option value="H">H (High)</option>
-          </select>
-        </div>
-        <button
-          id="generateBtn"
-          class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Generate QR Code
-        </button>
-        <div id="qrcode-container" class="mt-8"></div>
       </div>
+      <footer class="text-center py-4">
+        <p>
+          Created by
+          <a
+            href="https://hashir.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-500 hover:text-blue-700">
+            Hash Milhan
+          </a>
+        </p>
+      </footer>
     </div>
     <script src="script.js"></script>
   </body>
