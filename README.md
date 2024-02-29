@@ -1,2 +1,3 @@
-# qr-gen-js-site
-a smiple QR code generator
+# A simple QR Code Generator
+
+Live demo: https://simpleqrcode.pages.dev
