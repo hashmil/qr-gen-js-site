@@ -6,17 +6,14 @@
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   </head>
   <body>
     <div class="container">
       <h1>QR Code Generator</h1>
       <input type="url" id="urlInput" placeholder="Enter URL" />
-      <input
-        type="number"
-        id="sizeInput"
-        placeholder="Enter QR Code size"
-        min="100" />
+      <label for="sizeInput">QR Code size:</label>
+      <input type="range" id="sizeInput" min="100" max="1000" value="256" />
+      <input type="number" id="sizeValue" min="100" max="1000" value="256" />
       <select id="errorCorrectionLevel">
         <option value="L">L (Low)</option>
         <option value="M">M (Medium)</option>

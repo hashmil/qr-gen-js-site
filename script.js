@@ -1,5 +1,6 @@
 const urlInput = document.getElementById("urlInput");
 const sizeInput = document.getElementById("sizeInput");
+const sizeLabel = document.getElementById("sizeLabel");
 const errorCorrectionLevel = document.getElementById("errorCorrectionLevel");
 const generateBtn = document.getElementById("generateBtn");
 const qrcodeContainer = document.getElementById("qrcode-container");
@@ -11,24 +12,34 @@ generateBtn.addEventListener("click", () => {
   const ecLevel = errorCorrectionLevel.value;
 
   if (url !== "") {
-    // Generate QR Code (Image)
-    const qrcodeImg = new QRCode(qrcodeContainer, {
-      text: url,
-      width: size,
-      height: size,
-    });
+    // Generate QR Code (SVG)
+    const qrSvg = generateSvgQRCode(url, size, size, ecLevel);
 
-    // Download PNG Button
-    qrcodeImg._oDrawing._elImage.onload = () => {
+    // Create SVG element
+    const svgElement = new DOMParser().parseFromString(
+      qrSvg,
+      "image/svg+xml"
+    ).documentElement;
+    qrcodeContainer.appendChild(svgElement);
+
+    // Generate QR Code (PNG)
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.src =
+      "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(qrSvg)));
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, size, size);
+
+      // Download PNG Button
       const downloadPngBtn = document.createElement("a");
       downloadPngBtn.innerText = "Download PNG";
-      downloadPngBtn.href = qrcodeImg._oDrawing._elImage.src;
+      downloadPngBtn.href = canvas.toDataURL("image/png");
       downloadPngBtn.download = "qrcode.png";
       qrcodeContainer.appendChild(downloadPngBtn);
     };
-
-    // Generate QR Code (SVG)
-    const qrSvg = generateSvgQRCode(url, size, size, ecLevel);
 
     // Download SVG Button
     const downloadSvgBtn = document.createElement("a");
@@ -47,9 +58,19 @@ function generateSvgQRCode(content, width, height, errorCorrectionLevel) {
   const qr = qrcode(typeNumber, errorCorrectionLevel);
   qr.addData(content);
   qr.make();
-  return qr.createSvgTag({
-    scalable: true,
-    width: width,
-    height: height,
+
+  const cellSize = Math.ceil(Math.min(width, height) / qr.getModuleCount());
+  const adjustedWidth = cellSize * qr.getModuleCount();
+  const adjustedHeight = cellSize * qr.getModuleCount();
+
+  const svgTag = qr.createSvgTag({
+    cellSize: cellSize,
+    margin: 0,
   });
+
+  const svgWithSize = svgTag
+    .replace(/width="[\d.]+"/, `width="${adjustedWidth}"`)
+    .replace(/height="[\d.]+"/, `height="${adjustedHeight}"`);
+
+  return svgWithSize;
 }
