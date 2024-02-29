@@ -1,0 +1,155 @@
+# Front-end Project .gitignore
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Node modules
+node_modules
+npm-debug.log
+
+# CSS / SASS
+_sass-cache
+*.sass-cache
+*.scss-cache
+~*.sass
+~*.scss
+*~.sass
+*~.scss
+.sass-cache
+.scss-cache
+**/.sass-cache
+**/.scss-cache
+vendor
+
+# Gulp
+.cache
+.lock-cache
+
+# Webpack
+.webpack
+webpack.config.js
+yarn.lock
+
+# Grunt
+.grunt
+.gruntfile
+Gruntfile.js
+
+# Bower
+bower_components
+ bower.json
+bower.lock
+
+# Ember
+/tmp
+tmp
+vendor
+
+# Docs
+doc
+
+# Checkstyle
+.checkstyle
+
+# Beanstalk
+.beanstalk-ignore
+.beanstalk
+
+# Filebeat
+.filebeat
+
+# Puppet
+.metadata
+/manifests
+/modules
+/vendor
+/hiera.yaml
+
+# Chrome
+default_apps
+
+# Composer
+vendor/
+
+# .Net Project
+[Dd]ebug
+[Ll]ogs
+bin
+obj
+coverage
+
+# IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings
+bin
+
+# PHPUnit
+logs
+build
+_build
+
+# Doctrine
+/vendor
+/lib/Doctrine/ORM/Mapping/Driver/DatabaseDriver/Schema
+*/Doctrine
+/Doctrine.php
+
+# Angular
+dist
+node_modules
+
+#jsp
+classes
+tags
+
+# Laravel
+.env
+bootstrap/cache
+node_modules
+storage/logs
+storage/meta
+storage/sessions
+storage/views
+vendor
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# VSCode
+.vscode
+.history
+/out
+/coverage
+
+# RSpec
+.rspec-history
+
+# CocoaPods
+Pods
+
+# IntelliJ IDEA
+*.iws
+*.iml
+
+# Erlang Emake
+.emakefile
+*/emakefile
+
+# Cakephp
+tmp
+logs
+cache
+vendor
